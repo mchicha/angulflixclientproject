@@ -1,0 +1,18 @@
+
+<div class= "allMovies">
+    <div id="allMoviesContainer">
+
+        <h2>All Movies</h2>
+        <app-filter class="private-search row" (filterChanged)="handleSearchMovie($event)" ></app-filter>
+      
+        <div class="movies">	
+          <!-- ngRepeat: movie in movies | filter:{title:movieName} track by $index --><div class="movie allMovies ng-scope" ng-repeat="movie in movies | filter:{title:movieName} track by $index" ng-click="addToMyCollection(movie)">
+      
+              <div class="cards-container" layout-wrap layout="row">
+                  <mat-card *ngFor="let movie of allMovies | filter : currentSearchFilter; let idx = index"  class="movie-card">
+                      <app-movie [movie]="movie"  (selectedMovie)="handleAddMovieToMyMovies($event)"></app-movie>
+                  </mat-card>
+              </div>
+        </div><!-- end ngRepeat: movie in movies | filter:{title:movieName} track by $index --><div class="movie allMovies ng-scope" ng-repeat="movie in movies | filter:{title:movieName} track by $index" ng-click="addToMyCollection(movie)">
+    </div>
+</div>

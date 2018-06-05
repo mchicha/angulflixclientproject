@@ -1,0 +1,20 @@
+<div class= "myMovies">
+    <h1>Welcome to {{ title }} </h1>
+    <app-header></app-header>
+    <div id="myMoviesContainer" >
+        <div id="psuedoNav">		
+          <h2>My Movies</h2>
+          <app-filter class="private-search row" (filterChanged)="handleSearchMovie($event)" ></app-filter><button *ngIf="myMovies.length > 0" (click)="setMyMoviesDeleteModeEnable()">Trash</button>
+        </div>
+      
+        <div id="emptyCollectionContainer" *ngIf="myMovies.length==0"><h3>Select movies from below to add to your collection</h3></div>
+
+        <div class="movies">	
+          <div class="cards-container" layout-wrap layout="row">
+            <mat-card *ngFor="let movie of myMovies | filter : currentSearchFilter; let idx = index"  class="movie-card">
+                <app-movie [movie]="movie" [deleteMovieMode] = "modeDelete" (movieSelectedToRemove)="handleRemoveMovie($event)"></app-movie>
+            </mat-card>
+          </div>
+        </div>
+    </div>
+</div>
